@@ -1,0 +1,2 @@
+# The Todo List Tutorial
+This is a new way to make a todo list that I'm learning. I made worse todo list with Node. But Now I found a tutorial on Youtube showing me how to make a todo list application.
