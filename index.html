@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- IMPORTANT: 
+    Before you take this tutorial, you should know the basics of Vanilla JS.
+    This course will be using Bootstrap for the design.
+    If you want you can do the design with your HTML/CSS
+-->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <title>The todo list tutorial | No back-end knowledge needed, framworks or libraries | Only pure Vanilla JS</title>
+    </head>
+    <body>
+        <div class="container mt-4 border">
+            <div class="header d-flex justify-content-center align-items-center"">
+                <i><img src="todo.png" alt="todo"></i>
+                <h1 class="display-4 text-primary">The TodoList</h1>
+            </div>
+            <form id="todo-form">
+                <div class="form-group">
+                    <label for="title">Todo name</label>
+                    <input type="text" name="name" class="form-control" id="title" placeholder="Todo name...">
+                    <label for="hour" class="mt-4">Todo time</label>
+                    <select id="hour" name="time">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                    <span>:</span>
+                    <select id="minute" name="minute">
+                        <option>00</option>
+                        <option>05</option>
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                        <option>30</option>
+                        <option>35</option>
+                        <option>40</option>
+                        <option>45</option>
+                        <option>50</option>
+                        <option>55</option>
+                    </select>
+                    <select id="AmPm" name="AMPM">
+                        <option>AM</option>
+                        <option>PM</option>
+                    </select>
+                    <input type="submit" class="btn btn-primary form-control mt-4" type="Submit" value="Add Todo">
+                </div>
+            </form>
+            <table class="table table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Time</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="todo-list">
+                    
+                </tbody>
+            </table>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
