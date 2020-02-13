@@ -11,21 +11,7 @@ class Todo {
 // UI Class. The UI
 class UI {
     static displayTodos() {
-        const StoredTodos = [
-            {
-                title: 'Make the Bed',
-                hour: '6',
-                minute: '15',
-                AmPm: 'AM'
-            },
-            {
-                title: 'Wash the dishes',
-                hour: '8',
-                minute: '30',
-                AmPm: 'AM'
-            },
-        ];
-        const todos = StoredTodos;
+        const todos = Store.getTodos();
         todos.forEach(todo => UI.addTodoToList(todo));
     }
     static addTodoToList(todo) {
@@ -48,6 +34,9 @@ class UI {
         const container = document.querySelector('.container');
         const form = document.querySelector('form');
         container.insertBefore(alert, form);
+        setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
     }
     static clearFields() {
         document.querySelector('#title').value = '';
@@ -58,6 +47,32 @@ class UI {
 }
 
 // Store Class. The storage.
+class Store {
+    static getTodos() {
+        let todos;
+        if(localStorage.getItem('todos') === null) {
+            todos = [];
+        } else {
+            todos = JSON.parse(localStorage.getItem('todos'));
+        }
+        return todos;
+    }
+    static addTodo(todo) {
+        const todos = Store.getTodos();
+        todos.push(todo);
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }
+    static removeTodo(title) {
+        const todos = Store.getTodos();
+        todos.forEach((todo, index) => {
+            if(todo.title === title) {
+                todos.splice(index, 1);
+            }
+        });
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }
+}
+
 
 // Event. Displays todos.
 document.addEventListener('DOMContentLoaded', UI.displayTodos());
@@ -70,10 +85,12 @@ document.querySelector('#todo-form').addEventListener('submit', (e) => {
     const minute = document.querySelector('#minute').value;
     const ampm = document.querySelector('#AmPm').value;
     if(!title || !hour || !minute || !ampm) {
-        alert('Please fill in all the fields');
+        UI.showAlert('Please fill in all the fields', 'danger');
     } else {
         const todo = new Todo(title, hour, minute, ampm);
         UI.addTodoToList(todo);
+        Store.addTodo(todo);
+        UI.showAlert('Todo added', 'success');
         UI.clearFields();
     }
 });
@@ -81,4 +98,6 @@ document.querySelector('#todo-form').addEventListener('submit', (e) => {
 // Event. Remove todos.
 document.querySelector('#todo-list').addEventListener('click', (e) => {
     UI.deleteTodo(e.target);
+    Store.removeTodo(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+    UI.showAlert('Todo deleted', 'warning');
 });
