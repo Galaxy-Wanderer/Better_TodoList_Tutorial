@@ -40,9 +40,6 @@ class UI {
     }
     static clearFields() {
         document.querySelector('#title').value = '';
-        document.querySelector('#hour').value = '';
-        document.querySelector('#minute').value = '';
-        document.querySelector('#AmPm').value = '';
     }
 }
 
